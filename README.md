@@ -62,3 +62,11 @@ The API will be available at `http://<server-ip>:8000`.
 - **CORS**: Change `allow_origins=["*"]` in `main.py` to your frontend's exact URL.
 - **Process manager**: Use `gunicorn` + `uvicorn` workers or a systemd service in production.
 - **Environment variables**: Consider moving model path and allowed origins to a `.env` file.
+- **LightGBM runtime dependency**: If startup fails with `OSError: libgomp.so.1`, use the included `Dockerfile` (installs `libgomp1`) or install `libgomp1` in your host/container image.
+
+## Docker Deploy (Recommended)
+
+```bash
+docker build -t personality-api .
+docker run -p 8000:8000 personality-api
+```
