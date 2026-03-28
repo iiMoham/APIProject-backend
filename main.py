@@ -15,9 +15,20 @@ app = FastAPI(title="Personality Predictor API", version="1.0.0")
 # In production, replace "*" with your frontend server's URL, e.g.:
 #   allow_origins=["https://your-frontend-domain.com"]
 # ---------------------------------------------------------------------------
+cors_origins_env = os.getenv("CORS_ORIGINS", "")
+allowed_origins = [origin.strip() for origin in cors_origins_env.split(",") if origin.strip()]
+
+# Fallback defaults for local testing and GitHub Pages frontend.
+if not allowed_origins:
+    allowed_origins = [
+        "https://iimoham.github.io",
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+    ]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://iimoham.github.io/"],
+    allow_origins=allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
