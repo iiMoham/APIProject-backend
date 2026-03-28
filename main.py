@@ -17,7 +17,7 @@ app = FastAPI(title="Personality Predictor API", version="1.0.0")
 # ---------------------------------------------------------------------------
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://iimoham.github.io/APIProject-frontend/"],
+    allow_origins=["https://iimoham.github.io/"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
