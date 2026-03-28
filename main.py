@@ -36,7 +36,7 @@ app.add_middleware(
 
 # Load the trained model (expects classifier.pkl in the same directory)
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-MODEL_PATH = os.path.join(BASE_DIR, "classifier.pkl")
+MODEL_PATH = os.path.join(BASE_DIR, "ensemble_model.pkl")
 
 with open(MODEL_PATH, "rb") as f:
     classifier = pickle.load(f)
@@ -65,7 +65,7 @@ def predict_personality(data: PersonalityNote):
     if prediction[0] > 0.5:
         result = "You must have a great connections bro!"
     else:
-        result = "Get out of your coach you lazy dump ass"
+        result = "Get out of your coach you lazy guy"
 
     return {"prediction": result}
 
